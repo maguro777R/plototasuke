@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .center {
+      text-align: center;
+    }
+    .center * {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .tarea{
+      display: inline-block;
+      width: 50%;
+      padding: 10px;
+      border: 1px solid #999;
+      box-sizing: border-box;
+      background: #f2f2f2;
+      margin: 0.5em 0;
+      line-height: 1.5;
+      height: 6em;
+    }
+  </style>
+  <title>プロット作成お助けくん</title>
+</head>
+<body>
+  <!--アプリ名-->
+  <h1 class="center">プロット作成お助けくん</h1>
+  <!--起承転結と入力欄-->
+  <p class="center">起</p>
+  <div class="center">
+    <textarea class="tarea" id="plot"></textarea>
+  </div>
+  <p class="center">承</p>
+  <div class="center">
+    <textarea class="tarea" id="plot2"></textarea>
+  </div>
+  <p class="center">転</p>
+  <div class="center">
+    <textarea class="tarea" id="plot3"></textarea>
+  </div>
+  <p class="center">結</p>
+  <div class="center">
+    <textarea class="tarea" id="plot4"></textarea>
+  </div>
+
+  <div>
+    <input type="button" value="Check" id="Button">
+  </div>
+
+  
+
+  <div>
+    <label>感想：<br>
+    <textarea cols="40" rows="5" id="reviewTextarea"></textarea>
+    </label>
+    </div>
+
+  <div>
+    <input type="button" value="Check" id="checkButton">
+  </div>
+
+  <p id="msg"></p>
+
+
+
+  <div class="center">
+    <canvas id="canvas001" width="200" height="200">
+      canvas要素をサポートしていません。
+    </canvas>
+  </div>
+  <script>
+    // 起承転結の追加、入力欄の追加、pdf とかで出力？　canvas のjpeg書き出し？
+    // じゃあ、canvas ってどうやって使うんだっけ？　それを文字にするには？　なんかあったなそんな話
+    const canvas001 = document.getElementById("canvas001");
+    //if (canvas001.getContext) {
+      const ctx1 = canvas001.getContext("2d");//2次元描画
+      //context001.fillRect(0,0,180,180);//塗りつぶされた四角形
+        //context001.clearRect(30,30,120,120);//四角形の範囲を削除
+        //context001.strokeRect(40,40,100,100);//輪郭線の四角形
+        //context001.fillText("Web応用",100,150);
+    //}
+    let plot = document.getElementById("plot");
+    function btnClick(){
+      // 書いているもののリセットする処理も記述
+
+      let message = "plot.value";
+      message = plot.value;
+      ctx1.fillText(message,100,150);
+      message = plot2.value;
+      ctx1.fillText(message,100,150);
+      message = plot3.value;
+      ctx1.fillText(message,100,150);
+      message = plot4.value;
+      ctx1.fillText(message,100,150);
+    }
+    let Button = document.getElementById('Button');
+    Button.addEventListener('click', btnClick);
+
+
+
+    function butotnClick(){
+      msg.innerText = reviewTextarea.value;
+    }
+
+    let reviewTextarea = document.getElementById('reviewTextarea');
+    reviewTextarea.value = '感想をお願いします';
+    let msg = document.getElementById('msg');
+
+    let checkButton = document.getElementById('checkButton');
+    checkButton.addEventListener('click', butotnClick);
+
+    /*
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL("image/jpeg", 0.75); // PNGなら"image/png"
+    a.download = "image.jpg";
+    a.click();
+    */
+  </script>
+</body>
+</html>
